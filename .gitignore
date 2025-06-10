@@ -1,0 +1,103 @@
+# Temporary editor swap files
+*.swp
+*.*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python bytecode (if any)
+*.pyc
+
+# Project lock files
+project.lock.json
+
+# Media files you want to ignore
+*.mp4
+
+# NuGet packages
+*.nupkg
+*.snupkg
+nupkg/
+packages/
+
+# Build results
+bin/
+obj/
+out/
+build/
+bld/
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+
+# MSBuild logs
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.userprefs
+*.sln.docstates
+
+# Rider IDE files
+.idea/
+.idea/.idea.Database.Workshop/
+.idea/.idea.Database.Workshop/.idea/
+**/.idea/**/workspace.xml
+**/.idea/**/tasks.xml
+**/.idea/shelf/*
+**/.idea/dictionaries
+**/.idea/httpRequests/
+**/.idea/**/dataSources/
+**/.idea/**/dataSources.ids
+**/.idea/**/dataSources.xml
+**/.idea/**/dataSources.local.xml
+**/.idea/**/sqlDataSources.xml
+**/.idea/**/dynamic.xml
+**/.idea/**/*.iml
+**/.idea/**/contentModel.xml
+**/.idea/**/modules.xml
+
+# Visual Studio Code
+.vscode/
+
+# Fleet IDE
+.fleet/
+
+# Code Rush
+.cr/
+
+# Dotnet watch temp files
+.watch/
+
+# Application secrets
+secrets.json
+appsettings.*.json
+
+# EF migrations snapshot files
+Migrations/*Snapshot.cs
+
+# HTTP request files
+*.http
+
+# Dotnet global tools cache
+.tools/
+
+# Ignore compiled binaries and intermediate files
+*.dll
+*.exe
+*.pdb
+*.cache
+*.ilk
+*.meta
+*.obj
+
+# Logs and temp files
+*.log
+*.tmp

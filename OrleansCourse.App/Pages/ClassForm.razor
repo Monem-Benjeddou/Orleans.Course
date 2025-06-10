@@ -1,0 +1,92 @@
+@page "/Classes/Create"
+@page "/Classes/Edit/{ClassId:guid}"
+
+<PageTitle>@(_isEditMode ? "Edit Class" : "Create Class")</PageTitle>
+
+<div class="card">
+    <div class="card-header">
+        <h3>@(_isEditMode ? "Edit Class" : "Create Class")</h3>
+    </div>
+    <div class="card-body">
+        <EditForm Model="@_class" OnValidSubmit="HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Class Name</label>
+                        <InputText id="name" @bind-Value="_class.Name" class="form-control" />
+                        <ValidationMessage For="@(() => _class.Name)" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="instructorName">Instructor Name</label>
+                        <InputText id="instructorName" @bind-Value="_class.InstructorName" class="form-control" />
+                        <ValidationMessage For="@(() => _class.InstructorName)" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <InputDate id="startDate" @bind-Value="_class.StartDate" class="form-control" />
+                        <ValidationMessage For="@(() => _class.StartDate)" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <InputDate id="endDate" @bind-Value="_class.EndDate" class="form-control" />
+                        <ValidationMessage For="@(() => _class.EndDate)" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="maxCapacity">Maximum Capacity</label>
+                        <InputNumber id="maxCapacity" @bind-Value="_class.MaxCapacity" class="form-control" />
+                        <ValidationMessage For="@(() => _class.MaxCapacity)" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <InputSelect id="category" @bind-Value="_class.Category" class="form-control">
+                            @foreach (var category in Enum.GetValues(typeof(ClassCategory)))
+                            {
+                                <option value="@category">@category</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(() => _class.Category)" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="description">Description</label>
+                <InputTextArea id="description" @bind-Value="_class.Description" class="form-control" rows="4" />
+                <ValidationMessage For="@(() => _class.Description)" />
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="isActive">Status</label>
+                <div>
+                    <InputCheckbox id="isActive" @bind-Value="_class.IsActive" />
+                    <label for="isActive" class="form-check-label ms-2">Active</label>
+                </div>
+                <ValidationMessage For="@(() => _class.IsActive)" />
+            </div>
+            
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" @onclick="NavigateToClasses">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>

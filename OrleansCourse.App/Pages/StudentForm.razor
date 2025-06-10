@@ -1,0 +1,72 @@
+@page "/Students/Create"
+@page "/Students/Edit/{StudentId:guid}"
+
+<PageTitle>@(_isEditMode ? "Edit Student" : "Create Student")</PageTitle>
+
+<div class="card">
+    <div class="card-header">
+        <h3>@(_isEditMode ? "Edit Student" : "Create Student")</h3>
+    </div>
+    <div class="card-body">
+        <EditForm Model="@_student" OnValidSubmit="HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <InputText id="firstName" @bind-Value="_student.FirstName" class="form-control" />
+                        <ValidationMessage For="@(() => _student.FirstName)" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <InputText id="lastName" @bind-Value="_student.LastName" class="form-control" />
+                        <ValidationMessage For="@(() => _student.LastName)" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <InputText id="email" @bind-Value="_student.Email" class="form-control" />
+                        <ValidationMessage For="@(() => _student.Email)" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <InputText id="phoneNumber" @bind-Value="_student.PhoneNumber" class="form-control" />
+                        <ValidationMessage For="@(() => _student.PhoneNumber)" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <InputDate id="dateOfBirth" @bind-Value="_student.DateOfBirth" class="form-control" />
+                        <ValidationMessage For="@(() => _student.DateOfBirth)" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <InputText id="address" @bind-Value="_student.Address" class="form-control" />
+                        <ValidationMessage For="@(() => _student.Address)" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" @onclick="NavigateToStudents">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>

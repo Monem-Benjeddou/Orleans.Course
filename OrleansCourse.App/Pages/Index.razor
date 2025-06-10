@@ -1,0 +1,61 @@
+﻿@page "/"
+
+<PageTitle>Students Management</PageTitle>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Students</h2>
+    <AuthorizeView>
+        <Authorized>
+            <button class="btn btn-success" @onclick="NavigateToCreateStudent">
+                <i class="oi oi-plus"></i> Add New Student
+            </button>
+        </Authorized>
+    </AuthorizeView>
+</div>
+
+<div class="row">
+    @if (!_students.Any())
+    {
+        <div class="alert alert-info">No students found. Please add a new student.</div>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr class="columnHeader">
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>PHONE</th>
+                    <th>ENROLLED CLASSES</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in _students)
+                {
+                    <tr>
+                        <td>@student.Id</td>
+                        <td>@student.FullName</td>
+                        <td>@student.Email</td>
+                        <td>@student.PhoneNumber</td>
+                        <td>@student.EnrolledClassIds.Count</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-primary btn-sm" @onclick="() => NavigateToStudentDetails(student.Id)">
+                                    <i class="oi oi-eye"></i> View
+                                </button>
+                                <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEditStudent(student.Id)">
+                                    <i class="oi oi-pencil"></i> Edit
+                                </button>
+                                <button class="btn btn-danger btn-sm" @onclick="() => DeleteStudent(student.Id)">
+                                    <i class="oi oi-trash"></i> Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

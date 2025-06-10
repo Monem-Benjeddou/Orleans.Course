@@ -1,0 +1,83 @@
+@page "/Classes"
+
+<PageTitle>Classes Management</PageTitle>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Classes</h2>
+    <div>
+        <div class="form-floating d-inline-block me-2" style="width: 200px;">
+            <select @onchange="CategorySelected" class="form-select">
+                <option>All</option>
+                @foreach (var item in _categories)
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+            <label for="floatingSelect">Categories</label>
+        </div>
+        <AuthorizeView>
+            <Authorized>
+                <button class="btn btn-success" @onclick="NavigateToCreateClass">
+                    <i class="oi oi-plus"></i> Add New Class
+                </button>
+            </Authorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+<div class="row">
+    @if (!_classes.Any())
+    {
+        <div class="alert alert-info">No classes found. Please add a new class.</div>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr class="columnHeader">
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>INSTRUCTOR</th>
+                    <th>START DATE</th>
+                    <th>END DATE</th>
+                    <th>CAPACITY</th>
+                    <th>ENROLLMENT</th>
+                    <th>Category</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var classObj in _classes)
+                {
+                    <tr>
+                        <td>@classObj.Id</td>
+                        <td>@classObj.Name</td>
+                        <td>@classObj.InstructorName</td>
+                        <td>@classObj.StartDate.ToShortDateString()</td>
+                        <td>@classObj.EndDate.ToShortDateString()</td>
+                        <td>@classObj.MaxCapacity</td>
+                        <td>@classObj.CurrentEnrollment</td>
+                        <td>@classObj.Category.ToString()</td>
+
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-primary btn-sm" @onclick="() => NavigateToClassDetails(classObj.Id)">
+                                    <i class="oi oi-eye"></i> View
+                                </button>
+                                <button class="btn btn-warning btn-sm" @onclick="() => NavigateToEditClass(classObj.Id)">
+                                    <i class="oi oi-pencil"></i> Edit
+                                </button>
+                                <button class="btn btn-danger btn-sm" @onclick="() => DeleteClass(classObj.Id)">
+                                    <i class="oi oi-trash"></i> Delete
+                                </button>
+                                <button class="btn btn-info btn-sm" @onclick="() => AssignClass(classObj.Id)">
+                                    <i class="oi oi-share-boxed"></i> Assign
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

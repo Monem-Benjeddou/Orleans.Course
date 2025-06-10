@@ -1,0 +1,50 @@
+@page "/MyClasses"
+
+<PageTitle>My Classes</PageTitle>
+
+<h2 class="mb-4">My Enrolled Classes</h2>
+
+@if (!_classes.Any())
+{
+    <div class="alert alert-info">You're not enrolled in any classes yet.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr class="columnHeader">
+            <th>ID</th>
+            <th>NAME</th>
+            <th>INSTRUCTOR</th>
+            <th>START DATE</th>
+            <th>END DATE</th>
+            <th>CAPACITY</th>
+            <th>ENROLLMENT</th>
+            <th>Category</th>
+            <th>ACTIONS</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var classObj in _classes)
+        {
+            <tr>
+                <td>@classObj.Id</td>
+                <td>@classObj.Name</td>
+                <td>@classObj.InstructorName</td>
+                <td>@classObj.StartDate.ToShortDateString()</td>
+                <td>@classObj.EndDate.ToShortDateString()</td>
+                <td>@classObj.MaxCapacity</td>
+                <td>@classObj.CurrentEnrollment</td>
+                <td>@classObj.Category.ToString()</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-primary btn-sm" @onclick="() => NavigateToClassDetails(classObj.Id)">
+                            <i class="oi oi-eye"></i> View
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
