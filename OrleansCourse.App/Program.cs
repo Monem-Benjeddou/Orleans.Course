@@ -37,6 +37,10 @@ builder.Services.AddScoped<ComponentStateChangedObserver>();
 
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IClassService, ClassService>();
+builder.Services.AddScoped<IGradeService, GradeService>();
+builder.Services.AddScoped<IMLRecommendationService, MLRecommendationService>();
+builder.Services.AddScoped<IGradePredictionService, GradePredictionService>();
+builder.Services.AddScoped<IAtRiskIdentificationService, AtRiskIdentificationService>();
 
 var app = builder.Build();
 

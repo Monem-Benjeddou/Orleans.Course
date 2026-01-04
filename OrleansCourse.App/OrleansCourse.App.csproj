@@ -17,6 +17,10 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.ML" Version="3.0.1" />
+		<PackageReference Include="Microsoft.ML.FastTree" Version="3.0.1" />
+		<PackageReference Include="Microsoft.ML.Recommender" Version="0.20.1" />
+		<PackageReference Include="Microsoft.ML.Mkl.Components" Version="3.0.1" />
 		<PackageReference Include="Microsoft.Orleans.Client" Version="8.2.0" />
 		<PackageReference Include="Microsoft.Orleans.Clustering.AdoNet" Version="8.2.0" />
 		<PackageReference Include="Npgsql" Version="8.0.7" />
